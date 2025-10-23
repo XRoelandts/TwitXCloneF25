@@ -29,12 +29,25 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
+    View.OnClickListener signuplistener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            EditText editText = findViewById(R.id.user_field);
+            final String username = editText.getText().toString();
+
+            editText = findViewById(R.id.pass_field);
+            final String password = editText.getText().toString();
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
         signupButton = findViewById(R.id.signup_button);
+        signupButton.setOnClickListener(signuplistener);
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(loginListener);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -44,8 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void signUp(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+
+    public void OnClick(View view) {
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 }

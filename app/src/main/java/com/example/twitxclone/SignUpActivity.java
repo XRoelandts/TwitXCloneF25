@@ -17,6 +17,8 @@ public class SignUpActivity extends AppCompatActivity {
     EditText passwordText;
     EditText dobText;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
