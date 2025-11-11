@@ -1,5 +1,6 @@
 package com.example.twitxclone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -26,10 +27,9 @@ public class SignUpActivity extends AppCompatActivity {
     EditText usernameText;
     EditText passwordText;
     EditText dobText;
-
-
     FirebaseDatabase database;
     FirebaseAuth auth;
+
     OnCompleteListener<AuthResult> listener = new OnCompleteListener<>() {
         @Override
         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -37,9 +37,12 @@ public class SignUpActivity extends AppCompatActivity {
                 DatabaseReference userReference = database.getReference("users");
                 String uid = userReference.push().getKey();
                 User user = new User();
-                user.setDOB(dobText.getText().toString());;
+                user.setDOB(dobText.getText().toString());
                 user.setName(usernameText.getText().toString());
-                userReference.child(uid).setValue(user);;
+                userReference.child(uid).setValue(user);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
+                startActivity(intent);
 
             } else {
                 Exception e = task.getException();
